@@ -23,11 +23,12 @@ public class Level {
 		
 	//default constructor
 	public Level() {
-		img2 = getImage("/imgs/level1.png");  //load the image
+		img2 = getImage("/imgs/test.png");  //load the image
 		tx = AffineTransform.getTranslateInstance(x,y);
 		//initialize the location of the image, use your variables
 		x = 0;
 		y = 0;
+		init();
 	}
 		
 	//constructor that allows specifying the file name of the image
@@ -41,7 +42,7 @@ public class Level {
 		
 	public void changePicture(String newFileName) {
 		img2 = getImage(newFileName);
-		init(0, 0);
+		//init(8,6);
 	}
 		
 	public void paint(Graphics g) {
@@ -79,9 +80,13 @@ public class Level {
 	private void update() {
 		tx.setToTranslation(x, y);
 		//tx.scale(8, 6);
+		//tx.scale(1,1);
+	}
+	private void init() {
+		tx.setToTranslation(x,y);
 		tx.scale(1,1);
 	}
-		
+	
 	private void init(double a, double b) {
 		tx.setToTranslation(a, b);
 		tx.scale(8, 6);

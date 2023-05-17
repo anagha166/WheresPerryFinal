@@ -34,7 +34,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	boolean firstStart = false;
 	Level second = new Level("level2.png");
 	boolean secondStart = false;
-	Level third = new Level("test.png");
+	Level third = new Level();
 	boolean thirdStart = false;
 	
 	RestartMenu restartMenu = new RestartMenu();
