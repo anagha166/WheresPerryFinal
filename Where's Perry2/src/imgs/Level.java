@@ -28,7 +28,6 @@ public class Level {
 		//initialize the location of the image, use your variables
 		x = 0;
 		y = 0;
-		init();
 	}
 		
 	//constructor that allows specifying the file name of the image
@@ -42,7 +41,7 @@ public class Level {
 		
 	public void changePicture(String newFileName) {
 		img2 = getImage(newFileName);
-		//init(8,6);
+		init(x,y);
 	}
 		
 	public void paint(Graphics g) {
@@ -61,8 +60,6 @@ public class Level {
         int green = (clr & 0x0000ff00) >> 8;
         int blue =   clr & 0x000000ff;
 		if(red == 51 && green == 30 && blue == 22) {
-			//return true;
-			//System.out.println("yas");
 			check = true;
 		}
 
@@ -79,17 +76,12 @@ public class Level {
 	//update the picture variable location
 	private void update() {
 		tx.setToTranslation(x, y);
-		//tx.scale(8, 6);
-		//tx.scale(1,1);
-	}
-	private void init() {
-		tx.setToTranslation(x,y);
 		tx.scale(1,1);
 	}
 	
 	private void init(double a, double b) {
 		tx.setToTranslation(a, b);
-		tx.scale(8, 6);
+		tx.scale(1,1);
 	}
 
 	private Image getImage(String path) {

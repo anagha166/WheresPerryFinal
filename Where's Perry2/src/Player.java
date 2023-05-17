@@ -27,14 +27,11 @@ public class Player{
 	
 
 	public Player() {
-		img = getImage("/imgs/Phineas.png"); //load the image for Tree
+		img = getImage("/imgs/Phineas.png"); //load the image for Phineas
 		x = 0;
 		y= 0;
 		tx = AffineTransform.getTranslateInstance(x, y); 
 		
-		
-		
-	
 	}
 	
 	public void changePicture(String newFileName) {
@@ -48,7 +45,7 @@ public class Player{
 		g2.drawImage(img, tx, null);
 		update();
 		
-		g.drawRect((int) x+30, (int) 60, 10, 10);
+		//g.drawRect((int) x+30, (int) 60, 10, 10);
 	}
 	
 	private void init(double a, double b) {

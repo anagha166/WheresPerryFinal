@@ -24,9 +24,9 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	Player p = new Player();
 	Background homepage = new Background();
 	boolean home = false;
-	Buttons one = new Buttons("level1logo.png", 130, 190);
-	Buttons two = new Buttons("level2logo.png", 230, 190);
-	Buttons three = new Buttons("level3logo.png", 520, 190);
+	Buttons one = new Buttons("level1logo.png", 130, 275);
+	Buttons two = new Buttons("level2logo.png", 230, 275);
+	Buttons three = new Buttons("level3logo.png", 520, 270);
 	Buttons pause = new Buttons("pause.png", 730, 0);
 	
 	Background back = new Background("background.png");
@@ -39,51 +39,91 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	
 	RestartMenu restartMenu = new RestartMenu();
 	boolean canRestart = false;
-	Buttons restart = new Buttons("restart.png",300 ,320);
-	Buttons menu = new Buttons("menu.png", 420, 320);
+	Buttons restart = new Buttons("restart.png",330 ,420);
+	boolean tryagain = false;
+	Buttons menu = new Buttons("menu.png", 460, 420);
 	
 	
 	public void paint(Graphics g) {
 		super.paintComponent(g);
 		
+		//setting up the homepage of the game
 		homepage.paint(g);
 		one.paint(g);
 		two.paint(g);
 		three.paint(g);
-		
-		if (firstStart) {
+			
+		if (firstStart) {//checking if button to play level 1 has been pressed/'hit'
 			back.paint(g);
 			first.paint(g);
 			pause.paint(g);
-			p.paint(g);
+			p.paint(g); 
+			//if button has been pressed, draw the corresponding level and its components
 		}
-		if (secondStart) {
+		if (secondStart) {//checking if button to play level 2 has been pressed/'hit'
 			back.paint(g);
 			second.paint(g);
 			pause.paint(g);
 			p.paint(g);
+			//if button has been pressed, draw the corresponding level and its components
 		}
-		if (thirdStart) {
+		if (thirdStart) {//checking if button to play level 3 has been pressed/'hit'
 			back.paint(g);
 			third.paint(g);
 			pause.paint(g);
 			p.paint(g);
+			//if button has been pressed, draw the corresponding level and its components
 		}
-		if (canRestart) {
+		if (canRestart) {//checking if pause button was clicked 
 			restartMenu.paint(g);
 			menu.paint(g);
 			restart.paint(g);
+			//pause menu components are drawn (menu button and restart the level button
 		}
+		if(home) {//player has hit the menu button on pause menu
+			homepage.paint(g);
+			one.paint(g);
+			two.paint(g);
+			three.paint(g);
+			home = false;
+			//players are returned to homepage, i.e. homepage is redrawn
+		}
+		if(tryagain) {
+			if (firstStart) {//checking if button to play level 1 has been pressed/'hit'
+				back.paint(g);
+				first.paint(g);
+				pause.paint(g);
+				p.paint(g); 
+				//if button has been pressed, draw the corresponding level and its components
+			}else if (secondStart) {//checking if button to play level 2 has been pressed/'hit'
+				back.paint(g);
+				second.paint(g);
+				pause.paint(g);
+				p.paint(g);
+				//if button has been pressed, draw the corresponding level and its components
+			}else if (thirdStart) {//checking if button to play level 3 has been pressed/'hit'
+				back.paint(g);
+				third.paint(g);
+				pause.paint(g);
+				p.paint(g);
+				//if button has been pressed, draw the corresponding level and its components
+			}
+			tryagain = false;
+		}
+		
 		//System.out.println(p.getY());
 		//System.out.println(third.getclr(p.getX() + 30,p.getY()+90));
 		//System.out.println(homepage.getclr(p.getX()+10,p.getY()/100));
 		
 		
 		if(third.getclr(p.getX() + 30,p.getY()+70) == true) {
-			System.out.println("yas");
+			//phineas/ferb objects search for the specific color that they're allowed to step on 
+			
+			//System.out.println("yas");
 			p.setFlor(p.getY());
 			//p.setFlor(p.getY());
 		} else {
+			
 			p.setFlor(700);
 		}
 		
@@ -179,7 +219,17 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		if(pause.hit(arg0)) {
 			canRestart = true;
 		}
-		
+		if(menu.hit(arg0)) {
+			home = true;
+			firstStart = false;
+			secondStart = false;
+			thirdStart = false;
+			canRestart = false;
+		}
+		if(restart.hit(arg0)) {
+			tryagain = true;
+			canRestart = false;
+		}
 	}
 
 	@Override
