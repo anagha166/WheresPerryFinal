@@ -26,10 +26,10 @@ public class Player{
 	private double gravity = 0.1;
 	
 
-	public Player() {
-		img = getImage("/imgs/Phineas.png"); //load the image for Phineas
+	public Player(String fileName) {
+		img = getImage("/imgs/"+fileName); //load the image for Phineas
 		x = 0;
-		y= 0;
+		y = 0;
 		tx = AffineTransform.getTranslateInstance(x, y); 
 		
 	}
@@ -53,7 +53,10 @@ public class Player{
 		tx.scale(.05, .05);
 	}
 	
-	
+	public void restart() {
+		x = 0;
+		y = 0;
+	}
 	
 	public void stop(){
 		vx = 0;

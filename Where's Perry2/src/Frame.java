@@ -8,6 +8,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,18 +18,24 @@ import javax.swing.Timer;
 import imgs.Background;
 import imgs.Level;
 import imgs.Buttons;
+import imgs.Gems;
+import imgs.Lava;
 import imgs.RestartMenu;
 
 public class Frame extends JPanel implements ActionListener, MouseListener, KeyListener {
 	
-	Player p = new Player();
+	Player p = new Player("Phineas.png");
+	Player p2 = new Player("Ferb.png");
 	Background homepage = new Background();
 	boolean home = false;
+	//setting up homepage buttons that let user access levels 1-3
 	Buttons one = new Buttons("level1logo.png", 130, 275);
 	Buttons two = new Buttons("level2logo.png", 230, 275);
 	Buttons three = new Buttons("level3logo.png", 520, 270);
+	//pause button that appears in every level
 	Buttons pause = new Buttons("pause.png", 730, 0);
 	
+	//setting up the visual backgrounds and maze contents of levels
 	Background back = new Background("background.png");
 	Level first = new Level("level1.png");
 	boolean firstStart = false;
@@ -37,12 +44,22 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	Level third = new Level();
 	boolean thirdStart = false;
 	
+	//attributes of the menu pop-up
 	RestartMenu restartMenu = new RestartMenu();
 	boolean canRestart = false;
 	Buttons restart = new Buttons("restart.png",330 ,420);
 	boolean tryagain = false;
 	Buttons menu = new Buttons("menu.png", 460, 420);
 	
+	//setting up arrays that contain lava objects for each level
+	ArrayList<Lava> level1 = new ArrayList<Lava>();
+	ArrayList<Lava> level2 = new ArrayList<Lava>();
+	ArrayList<Lava> level3 = new ArrayList<Lava>();
+	
+	//setting up arrays that contain gem objects for each level
+	ArrayList<Gems> level1Gems = new ArrayList<Gems>();
+	ArrayList<Gems> level2Gems = new ArrayList<Gems>();
+	ArrayList<Gems> level3Gems = new ArrayList<Gems>();
 	
 	public void paint(Graphics g) {
 		super.paintComponent(g);
@@ -57,8 +74,19 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			back.paint(g);
 			first.paint(g);
 			pause.paint(g);
-			p.paint(g); 
+			p.paint(g);
 			//if button has been pressed, draw the corresponding level and its components
+			
+			if(first.getclr(p.getX()+30,p.getY()+75) == true) {
+				//phineas/ferb objects search for the specific color that they're allowed to step on 
+				
+				//System.out.println("yas");
+				p.setFlor(p.getY());
+				//p.setFlor(p.getY());
+			} else {
+				
+				p.setFlor(700);
+			}
 		}
 		if (secondStart) {//checking if button to play level 2 has been pressed/'hit'
 			back.paint(g);
@@ -66,6 +94,17 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			pause.paint(g);
 			p.paint(g);
 			//if button has been pressed, draw the corresponding level and its components
+
+			if(second.getclr(p.getX()+30,p.getY()+75) == true) {
+				//phineas/ferb objects search for the specific color that they're allowed to step on 
+				
+				//System.out.println("yas");
+				p.setFlor(p.getY());
+				//p.setFlor(p.getY());
+			} else {
+				
+				p.setFlor(700);
+			}
 		}
 		if (thirdStart) {//checking if button to play level 3 has been pressed/'hit'
 			back.paint(g);
@@ -73,6 +112,17 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			pause.paint(g);
 			p.paint(g);
 			//if button has been pressed, draw the corresponding level and its components
+			
+			if(third.getclr(p.getX()+30,p.getY()+75) == true) {
+				//phineas/ferb objects search for the specific color that they're allowed to step on 
+				
+				//System.out.println("yas");
+				p.setFlor(p.getY());
+				//p.setFlor(p.getY());
+			} else {
+				
+				p.setFlor(700);
+			}
 		}
 		if (canRestart) {//checking if pause button was clicked 
 			restartMenu.paint(g);
@@ -86,6 +136,7 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			two.paint(g);
 			three.paint(g);
 			home = false;
+			p.restart();
 			//players are returned to homepage, i.e. homepage is redrawn
 		}
 		if(tryagain) {
@@ -93,20 +144,53 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 				back.paint(g);
 				first.paint(g);
 				pause.paint(g);
-				p.paint(g); 
+				p.restart(); 
 				//if button has been pressed, draw the corresponding level and its components
+				
+				if(first.getclr(p.getX()+30,p.getY()+75) == true) {
+					//phineas/ferb objects search for the specific color that they're allowed to step on 
+					
+					//System.out.println("yas");
+					p.setFlor(p.getY());
+					//p.setFlor(p.getY());
+				} else {
+					
+					p.setFlor(700);
+				}
 			}else if (secondStart) {//checking if button to play level 2 has been pressed/'hit'
 				back.paint(g);
 				second.paint(g);
 				pause.paint(g);
-				p.paint(g);
+				p.restart();
 				//if button has been pressed, draw the corresponding level and its components
+				
+				if(second.getclr(p.getX()+30,p.getY()+75) == true) {
+					//phineas/ferb objects search for the specific color that they're allowed to step on 
+					
+					//System.out.println("yas");
+					p.setFlor(p.getY());
+					//p.setFlor(p.getY());
+				} else {
+					
+					p.setFlor(700);
+				}
 			}else if (thirdStart) {//checking if button to play level 3 has been pressed/'hit'
 				back.paint(g);
 				third.paint(g);
 				pause.paint(g);
-				p.paint(g);
+				p.restart();
 				//if button has been pressed, draw the corresponding level and its components
+				
+				if(third.getclr(p.getX()+30,p.getY()+75) == true) {
+					//phineas/ferb objects search for the specific color that they're allowed to step on 
+					
+					//System.out.println("yas");
+					p.setFlor(p.getY());
+					//p.setFlor(p.getY());
+				} else {
+					
+					p.setFlor(700);
+				}
 			}
 			tryagain = false;
 		}
@@ -114,18 +198,6 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		//System.out.println(p.getY());
 		//System.out.println(third.getclr(p.getX() + 30,p.getY()+90));
 		//System.out.println(homepage.getclr(p.getX()+10,p.getY()/100));
-		
-		
-		if(third.getclr(p.getX() + 30,p.getY()+70) == true) {
-			//phineas/ferb objects search for the specific color that they're allowed to step on 
-			
-			//System.out.println("yas");
-			p.setFlor(p.getY());
-			//p.setFlor(p.getY());
-		} else {
-			
-			p.setFlor(700);
-		}
 		
 		/*
 		if(third.getclr(p.getX()+20,p.getY()+70) == true) {
@@ -168,20 +240,6 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		f.setVisible(true);
 		
-		//third.getclr(40, 500);
-		
-		//System.out.println("yas");
-		//p.setFlor(300);
-		
-		//p.getclr();
-		//homepage.getclr(0,1);
-		
-		
-		
-		
-		
-		
-		//p.GetPixelColor(100, 200);
 		
 	}
 	
