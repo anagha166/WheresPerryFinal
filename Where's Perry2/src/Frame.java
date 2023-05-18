@@ -53,13 +53,25 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 	
 	//setting up arrays that contain lava objects for each level
 	ArrayList<Lava> level1 = new ArrayList<Lava>();
+	/*for (int i = 0; i < 6; i ++) {
+		for-loop to populate 6 level 1 lavas(3 phineas and 3 ferb)
+	}*/
 	ArrayList<Lava> level2 = new ArrayList<Lava>();
+	/*for (int i = 0; i < 4; i ++) {
+		for-loop to populate 6 level 2 lavas(2 phineas and 2 ferb)
+	}*/
 	ArrayList<Lava> level3 = new ArrayList<Lava>();
-	
+	/*for (int i = 0; i < _; i ++) {
+		for-loop to populate _ level 3 lavas(_ phineas and _ ferb)
+	}*/
 	//setting up arrays that contain gem objects for each level
 	ArrayList<Gems> level1Gems = new ArrayList<Gems>();
+	//for loop to set up gems
 	ArrayList<Gems> level2Gems = new ArrayList<Gems>();
+	//for loop to set up gems
 	ArrayList<Gems> level3Gems = new ArrayList<Gems>();
+	//for loop to set up games
+	
 	
 	public void paint(Graphics g) {
 		super.paintComponent(g);
@@ -211,13 +223,6 @@ public class Frame extends JPanel implements ActionListener, MouseListener, KeyL
 			p.setRwall(p.getX());
 			
 		} \\*/
-		
-		
-	
-		
-		
-		
-		
 		
 	}
 	
