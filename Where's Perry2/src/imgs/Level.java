@@ -61,9 +61,8 @@ public class Level {
         int blue =   clr & 0x000000ff;
 		if(red == 51 && green == 30 && blue == 22) {
 			check = true;
-		}else if(red == 61 && green == 32 && blue == 6) {
-			check = true;
-		}else if(red == 69 && green == 33 && blue == 8) {
+		}
+		if(red == 255 && green == 255 && blue == 255) {
 			check = true;
 		}
 		
